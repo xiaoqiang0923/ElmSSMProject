@@ -25,7 +25,7 @@ create table if not exists business
     add_time        timestamp default current_timestamp,
     up_time         timestamp default current_timestamp on update current_timestamp,
     primary key (`bid`)
-    ) comment '商家信息表';
+) charset=utf8 comment '商家信息表';
 commit;
 
 # 插入商家信息测试数据
@@ -35,7 +35,6 @@ values ('万家饺子','fe8fb64eb34764f9e0a58a32a819dcb2','img/001','4.9','各�
        ('张家饺子','fe8fb64eb34764f9e0a58a32a819dcb2','img/003','4.7','各种饺子炒菜','饿了么快送','软件园',15,3),
        ('王家饺子','fe8fb64eb34764f9e0a58a32a819dcb2','img/004','4.8','各种饺子炒菜','老鸟快送','软件园',15,3),
        ('赵家饺子','fe8fb64eb34764f9e0a58a32a819dcb2','img/005','4.9','各种饺子炒菜','顺丰快送','软件园',15,3);
-
 
 # 活动信息表
 drop table if exists promotion;
@@ -47,7 +46,7 @@ create table if not exists promotion
     add_time     timestamp default current_timestamp,
     up_time      timestamp default current_timestamp on update current_timestamp,
     primary key (`pid`)
-    ) comment '活动信息表';
+) charset=utf8 comment '活动信息表';
 commit;
 
 # 插入活动信息测试数据
@@ -69,7 +68,7 @@ create table if not exists business_activities
     primary key (`aid`),
     constraint `fk_ba_abid_to_b_bid` foreign key business_activities(`abid`) references business(`bid`),
     constraint `fk_ba_apid_to_p_pid` foreign key business_activities(`apid`) references promotion(`pid`)
-    )auto_increment 1  comment '商家--活动表';
+)auto_increment 1 charset=utf8 comment '商家--活动表';
 commit;
 
 # 插入商家--活动测试数据
@@ -87,7 +86,7 @@ create table if not exists categorys
     add_time  timestamp default current_timestamp,
     up_time   timestamp default current_timestamp on update current_timestamp,
     primary key (`cgid`)
-    ) comment '商品信息表';
+) charset=utf8 comment '商品信息表';
 commit;
 
 # 插入商品类别测试数据
@@ -119,7 +118,7 @@ create table if not exists goods
     primary key (`gid`),
     constraint `fk_g_gcgid_to_c_cgid` foreign key goods_info(`gcgid`) references categorys(`cgid`),
     constraint `fk_g_gbid_to_b_bid` foreign key goods_info(`gbid`) references business(`bid`)
-    ) comment '商品信息表';
+) charset=utf8 comment '商品信息表';
 commit;
 
 # 插入商品信息测试数据
@@ -147,26 +146,26 @@ create table if not exists customer
     UNIQUE KEY `cname` (`cname`),
     UNIQUE KEY `cphone` (`cphone`),
     UNIQUE KEY `cemail` (`cemail`)
-    ) auto_increment=1 charset=utf8 comment '客户基本信息表';
+) auto_increment=1 charset=utf8 comment '客户基本信息表';
 commit ;
 
 # 通过批处理插入测试数据
 DROP PROCEDURE
     IF
-    EXISTS customer_insert;
+        EXISTS customer_insert;
 
 DELIMITER $$
 CREATE PROCEDURE customer_insert ()
 BEGIN
     DECLARE
-i INT DEFAULT 1;
+        i INT DEFAULT 1;
     WHILE
-i < 100 DO
+            i < 100 DO
             insert into customer (cname,cpass) value (concat('cus',i),'696aa7bb5ee7ac9135f7ed4ef526fe4d') ;
             SET i = i + 1;
 
-END WHILE;
-COMMIT;
+        END WHILE;
+    COMMIT;
 
 END $$
 DELIMITER ;
@@ -183,7 +182,7 @@ create table if not exists adminuser
     add_time timestamp   not null default current_timestamp comment '创建时间',
     up_time  timestamp   not null default current_timestamp on update current_timestamp comment '修改时间',
     primary key (`uid`)
-    ) comment '管理用户登录表';
+) charset=utf8 comment '管理用户登录表';
 
 commit;
 # 插入管理用户测试数据
@@ -208,7 +207,7 @@ create table if not exists orderlist
     constraint `fk_o_ogid_to_g_gid` foreign key orderlist(`ogid`) references goods(`gid`),
     constraint `fk_o_ocid_to_c_cid` foreign key orderlist(`ocid`) references customer(`cid`),
     constraint `fk_o_obid_to_b_bid` foreign key orderlist(`obid`) references business(`bid`)
-    ) comment '订单表';
+) charset=utf8 comment '订单表';
 commit;
 
 #插入订单表插入测试数据
@@ -223,17 +222,14 @@ DELIMITER $$
 CREATE PROCEDURE orderlist_insert()
 BEGIN
     DECLARE
-i INT DEFAULT 1;
+        i INT DEFAULT 1;
     WHILE i < 100
         DO
             insert into orderlist(oamount, paysstatus, ogid, ocid, obid)
             VALUES (1,1,1,1,2);
             SET i = i + 1;
-end while;
-COMMIT;
+        end while;
+    COMMIT;
 end $$
 DELIMITER ;
 CALL orderlist_insert();
-
-
-

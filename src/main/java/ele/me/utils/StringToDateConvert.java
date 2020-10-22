@@ -1,4 +1,4 @@
-package vip.epss.utils;
+package ele.me.utils;
 
 import org.springframework.core.convert.converter.Converter;
 
@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
- * @创建人 epss[wangzhanf]
- * @创建时间 2020/10/15 0015
+ * @创建人 me[lq]
+ * @创建时间 2020/10/22 0015
  * @描述
  */
 public class StringToDateConvert implements Converter<String, Date> {

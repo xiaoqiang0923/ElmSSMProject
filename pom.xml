@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ssm Maven Webapp</name>
+    <name>ElmSSMProject Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -47,7 +47,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
+            <version>5.1.47</version>
         </dependency>
         <!--        数据库连接池-->
         <dependency>
@@ -175,7 +175,7 @@
     </dependencies>
 
     <build>
-        <finalName>ssm</finalName>
+        <finalName>ElmSSMProject</finalName>
 
         <!--        项目发布时需要发布的资源:本例中主要用于发布dao层的mapper-->
         <resources>

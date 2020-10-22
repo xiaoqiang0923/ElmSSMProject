@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ele.me.dao.BusinessMapper">
+  <resultMap id="BaseResultMap" type="ele.me.domain.Business">
+    <id column="bid" jdbcType="INTEGER" property="bid" />
+    <result column="bname" jdbcType="VARCHAR" property="bname" />
+    <result column="bpassword" jdbcType="VARCHAR" property="bpassword" />
+    <result column="bimg" jdbcType="VARCHAR" property="bimg" />
+    <result column="bscore" jdbcType="DOUBLE" property="bscore" />
+    <result column="bdescription" jdbcType="VARCHAR" property="bdescription" />
+    <result column="courier" jdbcType="VARCHAR" property="courier" />
+    <result column="blocation" jdbcType="VARCHAR" property="blocation" />
+    <result column="delivery" jdbcType="DOUBLE" property="delivery" />
+    <result column="freight" jdbcType="DOUBLE" property="freight" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bid, bname, bpassword, bimg, bscore, bdescription, courier, blocation, delivery, 
+    freight, add_time
+  </sql>
+  <select id="selectByExample" parameterType="ele.me.domain.BusinessExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from business
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from business
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="ele.me.domain.BusinessExample">
+    delete from business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="ele.me.domain.Business">
+    insert into business (bid, bname, bpassword, 
+      bimg, bscore, bdescription, 
+      courier, blocation, delivery, 
+      freight, add_time)
+    values (#{bid,jdbcType=INTEGER}, #{bname,jdbcType=VARCHAR}, #{bpassword,jdbcType=VARCHAR}, 
+      #{bimg,jdbcType=VARCHAR}, #{bscore,jdbcType=DOUBLE}, #{bdescription,jdbcType=VARCHAR}, 
+      #{courier,jdbcType=VARCHAR}, #{blocation,jdbcType=VARCHAR}, #{delivery,jdbcType=DOUBLE}, 
+      #{freight,jdbcType=DOUBLE}, #{addTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="ele.me.domain.Business">
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bid != null">
+        bid,
+      </if>
+      <if test="bname != null">
+        bname,
+      </if>
+      <if test="bpassword != null">
+        bpassword,
+      </if>
+      <if test="bimg != null">
+        bimg,
+      </if>
+      <if test="bscore != null">
+        bscore,
+      </if>
+      <if test="bdescription != null">
+        bdescription,
+      </if>
+      <if test="courier != null">
+        courier,
+      </if>
+      <if test="blocation != null">
+        blocation,
+      </if>
+      <if test="delivery != null">
+        delivery,
+      </if>
+      <if test="freight != null">
+        freight,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bid != null">
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="bname != null">
+        #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="bpassword != null">
+        #{bpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bimg != null">
+        #{bimg,jdbcType=VARCHAR},
+      </if>
+      <if test="bscore != null">
+        #{bscore,jdbcType=DOUBLE},
+      </if>
+      <if test="bdescription != null">
+        #{bdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="courier != null">
+        #{courier,jdbcType=VARCHAR},
+      </if>
+      <if test="blocation != null">
+        #{blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        #{delivery,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null">
+        #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ele.me.domain.BusinessExample" resultType="java.lang.Long">
+    select count(*) from business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update business
+    <set>
+      <if test="record.bid != null">
+        bid = #{record.bid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bname != null">
+        bname = #{record.bname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpassword != null">
+        bpassword = #{record.bpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bimg != null">
+        bimg = #{record.bimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bscore != null">
+        bscore = #{record.bscore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bdescription != null">
+        bdescription = #{record.bdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courier != null">
+        courier = #{record.courier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blocation != null">
+        blocation = #{record.blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delivery != null">
+        delivery = #{record.delivery,jdbcType=DOUBLE},
+      </if>
+      <if test="record.freight != null">
+        freight = #{record.freight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update business
+    set bid = #{record.bid,jdbcType=INTEGER},
+      bname = #{record.bname,jdbcType=VARCHAR},
+      bpassword = #{record.bpassword,jdbcType=VARCHAR},
+      bimg = #{record.bimg,jdbcType=VARCHAR},
+      bscore = #{record.bscore,jdbcType=DOUBLE},
+      bdescription = #{record.bdescription,jdbcType=VARCHAR},
+      courier = #{record.courier,jdbcType=VARCHAR},
+      blocation = #{record.blocation,jdbcType=VARCHAR},
+      delivery = #{record.delivery,jdbcType=DOUBLE},
+      freight = #{record.freight,jdbcType=DOUBLE},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ele.me.domain.Business">
+    update business
+    <set>
+      <if test="bname != null">
+        bname = #{bname,jdbcType=VARCHAR},
+      </if>
+      <if test="bpassword != null">
+        bpassword = #{bpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bimg != null">
+        bimg = #{bimg,jdbcType=VARCHAR},
+      </if>
+      <if test="bscore != null">
+        bscore = #{bscore,jdbcType=DOUBLE},
+      </if>
+      <if test="bdescription != null">
+        bdescription = #{bdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="courier != null">
+        courier = #{courier,jdbcType=VARCHAR},
+      </if>
+      <if test="blocation != null">
+        blocation = #{blocation,jdbcType=VARCHAR},
+      </if>
+      <if test="delivery != null">
+        delivery = #{delivery,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ele.me.domain.Business">
+    update business
+    set bname = #{bname,jdbcType=VARCHAR},
+      bpassword = #{bpassword,jdbcType=VARCHAR},
+      bimg = #{bimg,jdbcType=VARCHAR},
+      bscore = #{bscore,jdbcType=DOUBLE},
+      bdescription = #{bdescription,jdbcType=VARCHAR},
+      courier = #{courier,jdbcType=VARCHAR},
+      blocation = #{blocation,jdbcType=VARCHAR},
+      delivery = #{delivery,jdbcType=DOUBLE},
+      freight = #{freight,jdbcType=DOUBLE},
+      add_time = #{addTime,jdbcType=TIMESTAMP}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>
