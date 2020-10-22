@@ -41,5 +41,30 @@
             <!--            忽略部分字段的生成-->
             <ignoreColumn column="up_time"></ignoreColumn>
         </table>
+        <table tableName="adminuser" domainObjectName="Adminuser">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+        <table tableName="business" domainObjectName="Business">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+        <table tableName="categorys" domainObjectName="Categorys">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+        <table tableName="goods" domainObjectName="Goods">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+        <table tableName="orderlist" domainObjectName="Orderlist">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+        <table tableName="promotion" domainObjectName="Promotion">
+            <!--            忽略部分字段的生成-->
+            <ignoreColumn column="up_time"></ignoreColumn>
+        </table>
+
     </context>
 </generatorConfiguration>
