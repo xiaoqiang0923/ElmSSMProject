@@ -1,8 +1,11 @@
 package ele.me.domain;
 
-import java.util.Date;
+import lombok.Data;
 
-public class Categorys {
+import java.io.Serializable;
+import java.util.Date;
+@Data
+public class Categorys implements Serializable {
     private Integer cgid;
 
     private String cgname;
