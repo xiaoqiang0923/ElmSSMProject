@@ -36,7 +36,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--        6 指定数据表的生成策略-->
-        <!--        <table tableName="user" domainObjectName="User"/>-->
+                <table tableName="user" domainObjectName="User"/>
         <table tableName="customer" domainObjectName="Customer">
             <!--            忽略部分字段的生成-->
             <ignoreColumn column="up_time"></ignoreColumn>

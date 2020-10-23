@@ -17,7 +17,7 @@ public class SpringWithJunitTest {
 
     @Test
     public void test01() {
-        Adminuser adminuser = adminuserService.selectByPrimaryKey(1);
+        Adminuser adminuser = adminuserService.selectByPrimaryKey(2);
         System.out.println(adminuser);
     }
 }

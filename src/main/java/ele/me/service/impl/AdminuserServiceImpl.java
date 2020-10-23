@@ -1,13 +1,17 @@
 package ele.me.service.impl;
 
+import ele.me.dao.AdminuserMapper;
 import ele.me.domain.Adminuser;
 import ele.me.domain.AdminuserExample;
 import ele.me.service.AdminuserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service(value = "adminuserService")
 public class AdminuserServiceImpl implements AdminuserService {
+    @Autowired
+    private AdminuserMapper adminuserMapper;
 
     @Override
     public long countByExample(AdminuserExample example) {
@@ -41,7 +45,7 @@ public class AdminuserServiceImpl implements AdminuserService {
 
     @Override
     public Adminuser selectByPrimaryKey(Integer uid) {
-        return null;
+        return adminuserMapper.selectByPrimaryKey(uid);
     }
 
     @Override

@@ -7,6 +7,10 @@ public class Categorys {
 
     private String cgname;
 
+    private String cdes;
+
+    private String cavatar;
+
     private Date addTime;
 
     public Integer getCgid() {
@@ -23,6 +27,22 @@ public class Categorys {
 
     public void setCgname(String cgname) {
         this.cgname = cgname;
+    }
+
+    public String getCdes() {
+        return cdes;
+    }
+
+    public void setCdes(String cdes) {
+        this.cdes = cdes;
+    }
+
+    public String getCavatar() {
+        return cavatar;
+    }
+
+    public void setCavatar(String cavatar) {
+        this.cavatar = cavatar;
     }
 
     public Date getAddTime() {

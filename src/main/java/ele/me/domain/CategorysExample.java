@@ -235,6 +235,146 @@ public class CategorysExample {
             return (Criteria) this;
         }
 
+        public Criteria andCdesIsNull() {
+            addCriterion("cdes is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesIsNotNull() {
+            addCriterion("cdes is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesEqualTo(String value) {
+            addCriterion("cdes =", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesNotEqualTo(String value) {
+            addCriterion("cdes <>", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesGreaterThan(String value) {
+            addCriterion("cdes >", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesGreaterThanOrEqualTo(String value) {
+            addCriterion("cdes >=", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesLessThan(String value) {
+            addCriterion("cdes <", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesLessThanOrEqualTo(String value) {
+            addCriterion("cdes <=", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesLike(String value) {
+            addCriterion("cdes like", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesNotLike(String value) {
+            addCriterion("cdes not like", value, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesIn(List<String> values) {
+            addCriterion("cdes in", values, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesNotIn(List<String> values) {
+            addCriterion("cdes not in", values, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesBetween(String value1, String value2) {
+            addCriterion("cdes between", value1, value2, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCdesNotBetween(String value1, String value2) {
+            addCriterion("cdes not between", value1, value2, "cdes");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarIsNull() {
+            addCriterion("cavatar is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarIsNotNull() {
+            addCriterion("cavatar is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarEqualTo(String value) {
+            addCriterion("cavatar =", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarNotEqualTo(String value) {
+            addCriterion("cavatar <>", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarGreaterThan(String value) {
+            addCriterion("cavatar >", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarGreaterThanOrEqualTo(String value) {
+            addCriterion("cavatar >=", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarLessThan(String value) {
+            addCriterion("cavatar <", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarLessThanOrEqualTo(String value) {
+            addCriterion("cavatar <=", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarLike(String value) {
+            addCriterion("cavatar like", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarNotLike(String value) {
+            addCriterion("cavatar not like", value, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarIn(List<String> values) {
+            addCriterion("cavatar in", values, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarNotIn(List<String> values) {
+            addCriterion("cavatar not in", values, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarBetween(String value1, String value2) {
+            addCriterion("cavatar between", value1, value2, "cavatar");
+            return (Criteria) this;
+        }
+
+        public Criteria andCavatarNotBetween(String value1, String value2) {
+            addCriterion("cavatar not between", value1, value2, "cavatar");
+            return (Criteria) this;
+        }
+
         public Criteria andAddTimeIsNull() {
             addCriterion("add_time is null");
             return (Criteria) this;
