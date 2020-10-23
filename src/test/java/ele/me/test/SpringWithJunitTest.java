@@ -2,8 +2,10 @@ package ele.me.test;
 
 import ele.me.domain.Adminuser;
 import ele.me.domain.AdminuserExample;
+import ele.me.domain.Categorys;
 import ele.me.service.AdminuserService;
 import ele.me.utils.MD5Util;
+import ele.me.service.CategorysService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class SpringWithJunitTest {
     @Autowired     //自动注入
     private AdminuserService adminuserService;
+    @Autowired
+    private CategorysService categorysService;
 
 
     @Test
@@ -26,6 +30,12 @@ public class SpringWithJunitTest {
 
     @Test
     public void test02() {
+        Categorys categorys = categorysService.selectByPrimaryKey(3);
+        System.out.println(categorys);
+    }
+
+    @Test
+    public void test03() {
         Adminuser adminuser = new Adminuser();
         AdminuserExample adminuserExample = new AdminuserExample();
         AdminuserExample.Criteria criteria = adminuserExample.createCriteria();
