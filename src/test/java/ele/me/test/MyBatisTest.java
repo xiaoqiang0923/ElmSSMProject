@@ -1,15 +1,16 @@
 package ele.me.test;
 
+import ele.me.dao.AdminuserMapper;
+import ele.me.dao.CustomerMapper;
+import ele.me.domain.Adminuser;
+import ele.me.domain.Customer;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
-import vip.epss.dao.CustomerMapper;
-import vip.epss.dao.UserMapper;
-import vip.epss.domain.Customer;
-import vip.epss.domain.User;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,9 +46,9 @@ public class MyBatisTest {
 
     @Test
     public void test01(){
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = userMapper.selectByPrimaryKey(1);
-        System.out.println(user);
+        AdminuserMapper adminuserMapper = sqlSession.getMapper(AdminuserMapper.class);
+        Adminuser adminuser = adminuserMapper.selectByPrimaryKey(1);
+        System.out.println(adminuser);
     }
 
     @Test
