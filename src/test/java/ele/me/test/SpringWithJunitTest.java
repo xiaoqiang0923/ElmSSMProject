@@ -1,7 +1,9 @@
 package ele.me.test;
 
 import ele.me.domain.Adminuser;
+import ele.me.domain.AdminuserExample;
 import ele.me.service.AdminuserService;
+import ele.me.utils.MD5Util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,20 @@ public class SpringWithJunitTest {
     @Autowired     //自动注入
     private AdminuserService adminuserService;
 
+
     @Test
     public void test01() {
         Adminuser adminuser = adminuserService.selectByPrimaryKey(2);
+        System.out.println(adminuser);
+    }
+
+    @Test
+    public void test02() {
+        Adminuser adminuser = new Adminuser();
+        AdminuserExample adminuserExample = new AdminuserExample();
+        AdminuserExample.Criteria criteria = adminuserExample.createCriteria();
+        adminuser.setPassword(MD5Util.getMD5(adminuser.getPassword()));
+        adminuser = adminuserService.selectByPrimaryKey(2);
         System.out.println(adminuser);
     }
 }

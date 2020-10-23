@@ -40,7 +40,7 @@ public class AdminuserServiceImpl implements AdminuserService {
 
     @Override
     public List<Adminuser> selectByExample(AdminuserExample example) {
-        return null;
+        return adminuserMapper.selectByExample(example);
     }
 
     @Override

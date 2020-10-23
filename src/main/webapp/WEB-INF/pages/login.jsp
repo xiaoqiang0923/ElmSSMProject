@@ -31,7 +31,7 @@
     <![endif]-->
 </head>
 <body>
-<form action="${app}/user/loginCheck" method="post">
+<form action="${app}/adminuser/loginCheck" method="post">
     <input type="text" name="username" />
     <input type="password" name="password" />
     <input type="submit" value="管理登录" />

@@ -1,4 +1,4 @@
-package vip.epss.utils;
+package ele.me.utils;
 
 import org.springframework.util.DigestUtils;
 
