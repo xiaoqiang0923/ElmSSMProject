@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Adminuser{
+public class Adminuser implements Serializable{
     private Integer uid;
 
     private String username;

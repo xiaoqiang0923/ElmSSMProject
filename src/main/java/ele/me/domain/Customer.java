@@ -27,6 +27,17 @@ public class Customer  implements Serializable {
 
     private Date addTime;
 
+    public Customer() {
+    }
+
+    public Customer(Integer cid, String cname, Boolean cstatus, Date addTime) {
+        this.cid = cid;
+        this.cname = cname;
+        this.cstatus = cstatus;
+        this.addTime = addTime;
+    }
+
+
     public Integer getCid() {
         return cid;
     }

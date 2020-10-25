@@ -14,7 +14,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>后台管理</title>
+    <title>用户管理</title>
     <meta charset="UTF-8"/>
     <base target="_self"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -77,7 +77,7 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/customer/opt" class="form-horizontal" role="form">
                     <%--input type="hidden" name="_method" value="POST" /--%>
                     <div class="form-group">
                         <label for="usernameAddInput">username:</label>
@@ -114,11 +114,11 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/Customer/opt" class="form-horizontal" role="form">
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group">
-                        <label for="uidUpdateInput">uid:</label>
-                        <input type="text" readonly="readonly" class="form-control" id="uidUpdateInput" name="uid"
+                        <label for="cidUpdateInput">cid:</label>
+                        <input type="text" readonly="readonly" class="form-control" id="cidUpdateInput" name="cid"
                                placeholder="uid"/>
                     </div>
                     <div class="form-group">
@@ -146,7 +146,7 @@
     </div>
 </div>
 
-<form id="searchForm" method="get" action="${app}/adminuser/list">
+<form id="searchForm" method="get" action="${app}/customer/list">
     <select id="uidList" name="uidCondition">
         <option selected="selected" value="-1">不限uid</option>
         <option value="0">uid大于</option>
