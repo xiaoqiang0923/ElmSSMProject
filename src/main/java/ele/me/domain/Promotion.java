@@ -1,8 +1,12 @@
 package ele.me.domain;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Promotion {
+@Data
+public class Promotion  implements Serializable {
     private Integer pid;
 
     private String pname;

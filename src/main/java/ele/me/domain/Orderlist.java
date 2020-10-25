@@ -1,8 +1,12 @@
 package ele.me.domain;
 
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Orderlist {
+@Data
+public class Orderlist  implements Serializable {
     private Integer oid;
 
     private Integer oamount;

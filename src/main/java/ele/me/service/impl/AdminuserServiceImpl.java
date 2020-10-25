@@ -4,6 +4,7 @@ import ele.me.dao.AdminuserMapper;
 import ele.me.domain.Adminuser;
 import ele.me.domain.AdminuserExample;
 import ele.me.service.AdminuserService;
+import ele.me.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -20,12 +21,12 @@ public class AdminuserServiceImpl implements AdminuserService {
 
     @Override
     public int deleteByExample(AdminuserExample example) {
-        return 0;
+        return adminuserMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer uid) {
-        return 0;
+        return adminuserMapper.deleteByPrimaryKey(uid);
     }
 
     @Override
@@ -35,7 +36,9 @@ public class AdminuserServiceImpl implements AdminuserService {
 
     @Override
     public int insertSelective(Adminuser record) {
-        return 0;
+        //对传递过来的明文密码加密为密文然后比对
+        record.setPassword(MD5Util.getMD5(record.getPassword()));
+        return adminuserMapper.insertSelective(record);
     }
 
     @Override
@@ -60,7 +63,8 @@ public class AdminuserServiceImpl implements AdminuserService {
 
     @Override
     public int updateByPrimaryKeySelective(Adminuser record) {
-        return 0;
+        record.setPassword(MD5Util.getMD5(record.getPassword()));
+        return adminuserMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override

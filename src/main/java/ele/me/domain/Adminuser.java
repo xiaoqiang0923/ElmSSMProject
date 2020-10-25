@@ -2,10 +2,11 @@ package ele.me.domain;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Adminuser {
+public class Adminuser{
     private Integer uid;
 
     private String username;
@@ -13,6 +14,26 @@ public class Adminuser {
     private String password;
 
     private Date addTime;
+
+    public Adminuser() {
+    }
+
+    public Adminuser(Integer uid, String username, Date addTime){
+        this.uid = uid;
+        this.username = username;
+        this.addTime = addTime;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", addTime=" + addTime +
+                '}';
+    }
+
 
     public Integer getUid() {
         return uid;

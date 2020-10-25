@@ -35,7 +35,7 @@
 </head>
 <body>
 当前登录用户:${USER_SESSION}
-<a href="${app}/user/logout">退出登录</a>
+<a href="${app}/adminuser/logout">退出登录</a>
 
 <nav class="navbar navbar-expand-sm bg-light">
     <ul class="navbar-nav">
@@ -65,7 +65,7 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/userrest/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
                     <%--input type="hidden" name="_method" value="POST" /--%>
                     <div class="form-group">
                         <label for="usernameAddInput">username:</label>
@@ -102,7 +102,7 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/userrest/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group">
                         <label for="uidUpdateInput">uid:</label>
@@ -134,9 +134,7 @@
     </div>
 </div>
 
-
-
-<form id="searchForm" method="get" action="${app}/userrest/list">
+<form id="searchForm" method="get" action="${app}/adminuser/list">
     <select id="uidList" name="uidCondition">
         <option selected="selected" value="-1">不限uid</option>
         <option value="0">uid大于</option>
@@ -163,7 +161,7 @@
             <input type="checkbox" id="choiceToggle"/>
             <input class="btn btn-sm btn-warning" type="button" id="reverseBtn" value="反选"/>
         </th>
-        <th>序号#</th>
+        <th>序号</th>
         <th>用户id(uid)</th>
         <th>姓名(username)</th>
         <th>密码(password)</th>
@@ -200,12 +198,8 @@
 
     $(function () {
         //为了跳转页面方便,设置全局变量保存当前页和最大页码数
-
-
         //页面加载时向远端获取所有数据,页面定位在第1页
-        // gotoPage(1,3);
         gotoPage();
-
         //页面加载时给全选和反选按钮绑定事件
         mulCheck();
         //给查询按钮绑定事件
@@ -236,9 +230,9 @@
             type: "GET",
             success: function (result) {
                 //回填数据
-                $("#uidUpdateInput").val(result.dataZone.user.uid);
-                $("#usernameUpdateInput").val(result.dataZone.user.username);
-                $("#addTimeUpdateInput").val(new Date(result.dataZone.user.addTime).Format("yyyy-MM-dd"));
+                $("#uidUpdateInput").val(result.dataZone.adminuser.uid);
+                $("#usernameUpdateInput").val(result.dataZone.adminuser.username);
+                $("#addTimeUpdateInput").val(new Date(result.dataZone.adminuser.addTime).Format("yyyy-MM-dd"));
 
             },
             error: function () {
@@ -254,7 +248,7 @@
         // alert("search被调用了");
         $.ajax({
             //url: "${app}/userrest/list?startDate=$("#startDate").val()&endDate=2020-10-13",
-            url: "${app}/userrest/list",
+            url: "${app}/adminuser/list",
             type: "GET",
             data: $("#searchForm").serialize(),
             success: function (result) {
@@ -277,11 +271,10 @@
         //修改数据之前先进行数据校验
         //校验通过向服务器发送请求
         $.ajax({
-            url: "${app}/userrest/opt",
+            url: "${app}/adminuser/opt",
             type: "PUT",
             data: $("#updateModal form").serialize(),
             success: function (result) {
-                // alert(result.message);
 
                 $("#updateModal").modal("hide");//关闭模态框
                 gotoPage(currentPage);//回到当前页面
@@ -307,11 +300,10 @@
         //添加数据之前先进行数据校验
         //校验通过向服务器发送请求
         $.ajax({
-            url: "${app}/userrest/opt",
+            url: "${app}/adminuser/opt",
             type: "POST",
             data: $("#addModal form").serialize(),
             success: function (result) {
-                //alert(result.message);
                 $("#addModal").modal("hide");//关闭模态框
                 gotoPage(maxPages+1);//到最后一页,想想为什么要加1
                 alertTips(result.message,"alert-success");
@@ -331,10 +323,7 @@
             url: ele.target.href,
             type: "DELETE",
             success: function (result) {
-                // alert(result.message);
                 alertTips(result.message,"alert-success");
-                // alert(result.dataZone.num);
-                // alert(currentPage);
                 gotoPage(currentPage);
             },
             error: function (result) {
@@ -363,7 +352,7 @@
             //向服务器发送请求,我们已经使用过get和post方法,这次使用最底层的ajax方法
             $.ajax({
                 type: "DELETE",
-                url: "${app}/userrest/opt/" + uids,
+                url: "${app}/adminuser/opt/" + uids,
                 success: function (result) {
                     // alert(result.message);
                     // $(document).flush();//刷新当前页
@@ -383,7 +372,7 @@
         var pageSize1 = pageSize == null ? 10 : page;
         $.ajax({
             type: "GET",
-            url: "${app}/userrest/list?pageNum=" + page1 + "&pageSize=" + pageSize1,
+            url: "${app}/adminuser/list?pageNum=" + page1 + "&pageSize=" + pageSize1,
             dataType: "json",
             // data: "pageNum=" + page1 + "&pageSize=" + pageSize1,
             data: $("#searchForm").serialize(),
@@ -415,8 +404,8 @@
             var usernameTd = $('<td></td>').text(item.username);
             var passwordTd = $('<td></td>').text(item.password);
             var addTimeTd = $('<td></td>').text(new Date(item.addTime).Format("yyyy-MM-dd HH:mm:ss"));
-            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/userrest/opt/' + item.uid + '">修改</a>');
-            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/userrest/opt/' + item.uid + '">删除</a>');
+            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/adminuser/opt/' + item.uid + '">修改</a>');
+            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/adminuser/opt/' + item.uid + '">删除</a>');
             //将单元格追加到行中
             uTr.append(checkboxTh).append(countTh).append(uidTd)
                 .append(usernameTd).append(passwordTd).append(addTimeTd)

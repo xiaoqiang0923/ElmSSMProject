@@ -31,11 +31,28 @@
     <![endif]-->
 </head>
 <body>
+<div class="container">
+<h2>饿了么后台管理系统登录</h2><br/>
 <form action="${app}/adminuser/loginCheck" method="post">
-    <input type="text" name="username" />
-    <input type="password" name="password" />
-    <input type="submit" value="管理登录" />
+    <div class="form-group">
+        <label for="username">账号:</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="账号"/>
+    </div>
+    <div class="form-group">
+        <label for="pwd">密码:</label>
+        <input type="password" class="form-control" name="password" id="pwd" placeholder="密码">
+    </div>
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"> Remember me
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">登录</button>
+
 </form>
+</div>
+
+
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 <script src="${app}/static/js/jquery-3.3.1.js" ></script>
 <!-- 包括所有已编译的插件 -->
