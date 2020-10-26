@@ -14,7 +14,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>后台管理</title>
     <meta charset="UTF-8"/>
     <base target="_self"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -23,6 +23,8 @@
     <link href="${app}/static/css/animate.css" rel="stylesheet"/>
     <link href="${app}/static/css/font-awesome.css" rel="stylesheet"/>
     <link href="${app}/static/css/custom.css" rel="stylesheet"/>
+
+
 
     <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
     <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
@@ -46,7 +48,7 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/customer/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
                     <%--input type="hidden" name="_method" value="POST" /--%>
                     <div class="form-group">
                         <label for="usernameAddInput">username:</label>
@@ -83,11 +85,11 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/Customer/opt" class="form-horizontal" role="form">
+                <form method="post" action="${app}/adminuser/opt" class="form-horizontal" role="form">
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group">
-                        <label for="cidUpdateInput">cid:</label>
-                        <input type="text" readonly="readonly" class="form-control" id="cidUpdateInput" name="cid"
+                        <label for="uidUpdateInput">uid:</label>
+                        <input type="text" readonly="readonly" class="form-control" id="uidUpdateInput" name="uid"
                                placeholder="uid"/>
                     </div>
                     <div class="form-group">
@@ -115,7 +117,7 @@
     </div>
 </div>
 
-<form id="searchForm" method="get" action="${app}/customer/list">
+<form id="searchForm" method="get" action="${app}/adminuser/list">
     <select id="uidList" name="uidCondition">
         <option selected="selected" value="-1">不限uid</option>
         <option value="0">uid大于</option>
@@ -144,14 +146,8 @@
         </th>
         <th>序号</th>
         <th>用户id(uid)</th>
-        <th>姓名(cname)</th>
-        <th>电话(cphone)</th>
-        <th>邮箱(cemail)</th>
-        <th>密码(cpass)</th>
-        <th>生日(cbirth)</th>
-        <th>头像(cbirth)</th>
-        <th>性别(cgender)</th>
-        <th>状态(cstatus)</th>
+        <th>姓名(username)</th>
+        <th>密码(password)</th>
         <th>创建时间(addTime)</th>
         <th>操作(修改)</th>
         <th>操作(删除)</th>
@@ -354,13 +350,14 @@
         }
     }
 
-    function gotoPage(pageNum, pageSize) {
-        pageNum = pageNum == null ? 1 : pageNum;
-        pageSize = pageSize == null ? 10 : pageSize;
+    function gotoPage(page, pageSize) {
+        var page1 = page == null ? 1 : page;
+        var pageSize1 = pageSize == null ? 10 : page;
         $.ajax({
             type: "GET",
-            url: "${app}/customer/list?pageNum=" + pageNum + "&pageSize=" + pageSize,
+            url: "${app}/adminuser/list?pageNum=" + page1 + "&pageSize=" + pageSize1,
             dataType: "json",
+            // data: "pageNum=" + page1 + "&pageSize=" + pageSize1,
             data: $("#searchForm").serialize(),
             success: function (result) {
                 // 解析返回的json数据并显示到界面中,封装为函数吧,太多东西了
@@ -379,29 +376,22 @@
     function parseDataAndShow(result) {
         $("#userTable tbody").empty();
         // 获取数据集合
-        let lists = result.dataZone.pageInfo.list;
-        $.each(lists, function (index, item) {
+        let users = result.dataZone.pageInfo.list;
+        $.each(users, function (index, item) {
             //构建行
             var uTr = $("<tr></tr>");
             //构建多个单元格
-            var checkboxTh = $('<th><input type="checkbox" name="choiceList" value="${item.cid}"/></th>');
+            var checkboxTh = $('<th><input type="checkbox" name="choiceList" value="${item.uid}"/></th>');
             var countTh = $('<th></th>').text(index + 1);
-            var td1 = $('<td></td>').text(item.cid);
-            var td2 = $('<td></td>').text(item.cname);
-            var td3 = $('<td></td>').text(item.cpass);
-            var td4 = $('<td></td>').text(item.cphone);
-            var td5 = $('<td></td>').text(item.cemail);
-            var td6 = $('<td></td>').text(item.cbirth);
-            var td7 = $('<td></td>').text(item.cavatar);
-            var td8 = $('<td></td>').text(item.cgender);
-            var td9 = $('<td></td>').text(item.cstatus);
+            var uidTd = $('<td></td>').text(item.uid);
+            var usernameTd = $('<td></td>').text(item.username);
+            var passwordTd = $('<td></td>').text(item.password);
             var addTimeTd = $('<td></td>').text(new Date(item.addTime).Format("yyyy-MM-dd HH:mm:ss"));
             var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/adminuser/opt/' + item.uid + '">修改</a>');
             var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/adminuser/opt/' + item.uid + '">删除</a>');
             //将单元格追加到行中
-            uTr.append(checkboxTh).append(countTh).append(td1)
-                .append(td2).append(td3).append(td4).append(td5).append(td6)
-                .append(td7).append(td8).append(td9).append(addTimeTd)
+            uTr.append(checkboxTh).append(countTh).append(uidTd)
+                .append(usernameTd).append(passwordTd).append(addTimeTd)
                 .append(upBtnTd).append(delBtnTd);
             // 将行追加到表体中
             $("#userTable tbody").append(uTr);

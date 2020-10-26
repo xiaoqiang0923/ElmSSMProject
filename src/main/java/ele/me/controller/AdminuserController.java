@@ -35,7 +35,7 @@ public class AdminuserController {
 //  跳转管理员信息页面
     @RequestMapping(value = "/adminpage",method = {RequestMethod.GET})
     public String toAdmin(){
-        return "admin";
+        return "adminuser";
     }
 
 //  退出登录

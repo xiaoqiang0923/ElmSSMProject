@@ -140,6 +140,12 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.10.0</version>
         </dependency>
+        <!--        对象-json数据转换-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
+        </dependency>
         <!--        上传文件-->
         <dependency>
             <groupId>commons-fileupload</groupId>

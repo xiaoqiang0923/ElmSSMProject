@@ -31,7 +31,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <!--            添加排除的选项(静态资源和登录页)-->
-            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/pages/login"/>
             <mvc:exclude-mapping path="/static/**"/>
             <bean class="ele.me.interceptor.LoginInterceptor"/>
         </mvc:interceptor>

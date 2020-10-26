@@ -23,6 +23,20 @@ public class Goods  implements Serializable {
 
     private Date addTime;
 
+    public Goods() {
+    }
+
+    public Goods(Integer gid, String gname, String gimg, String gintroduction, Double gprice, Integer gcgid, Integer gbid, Date addTime) {
+        this.gid = gid;
+        this.gname = gname;
+        this.gimg = gimg;
+        this.gintroduction = gintroduction;
+        this.gprice = gprice;
+        this.gcgid = gcgid;
+        this.gbid = gbid;
+        this.addTime = addTime;
+    }
+
     public Integer getGid() {
         return gid;
     }
