@@ -9,14 +9,18 @@ import ele.me.utils.MessageAndData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/customer")
@@ -90,11 +94,22 @@ public class CustomerController {
         return MessageAndData.success("查询成功").add("customer",customer);
     }
 
-
+//添加新数据
     @ResponseBody
     @RequestMapping(value = "/opt",method = RequestMethod.POST)
-    public MessageAndData optInsert(Customer customer){
-        Integer i = customerService.insertSelective(customer);
+    public MessageAndData optInsert(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request,Customer obj) throws IOException {
+        String path="c:\\upload";
+//        String path = request.getSession().getServletContext().getRealPath("/images/upload");
+        String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        File file1 = new File(path, filename);
+        if(!file1.exists()){
+            file1.mkdirs();
+        }
+        file.transferTo(file1);
+        String avatarUrl = "/upload/" + filename;
+        obj.setCavatar(avatarUrl);
+
+        Integer i = customerService.insertSelective(obj);
         if(i>0){
             return MessageAndData.success("成功添加"+i+"条记录");
         }else{
@@ -128,9 +143,19 @@ public class CustomerController {
     //    如果使用put方法,记得要在web.xml中添加相应过滤器,对象不能封装
     @ResponseBody
     @RequestMapping(value = "/opt",method = RequestMethod.PUT)
-    public MessageAndData optUpdate(Customer customer){
-        System.out.println(customer);
-        int i = customerService.updateByPrimaryKeySelective(customer);
+    public MessageAndData optUpdate(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, Customer obj) throws IOException {
+        String path="c:\\upload";
+//        String path = request.getSession().getServletContext().getRealPath("/images/upload");
+        String filename = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        File file1 = new File(path, filename);
+        if(!file1.exists()){
+            file1.mkdirs();
+        }
+        file.transferTo(file1);
+        String avatarUrl = "/upload/" + filename;
+        obj.setCavatar(avatarUrl);
+
+        int i = customerService.updateByPrimaryKeySelective(obj);
         if(i>0){
             return MessageAndData.success("成功修改"+i+"条记录");
         }else{
