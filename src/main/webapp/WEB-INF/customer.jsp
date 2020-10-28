@@ -48,17 +48,17 @@
             <div class="modal-body">
                 <form method="post" action="${app}/customer/opt" enctype="multipart/form-data" class="form-horizontal" role="form">
                     <%--input type="hidden" name="_method" value="POST" /--%>
-                    <div class="form-group">
-                        <label for="cnameAddInput">username:</label>
-                        <input type="text" class="form-control" id="cnameAddInput" name="cname"
-                               placeholder="请输入用户姓名"/>
-                    </div>
-                    <div id="cnameTips"></div>
-                    <div class="form-group">
-                        <label for="cpassAddInput">password:</label>
-                        <input type="password" class="form-control" id="cpassAddInput" name="cpass"
-                               placeholder="请输入密码">
-                    </div>
+                        <div class="form-group">
+                            <label for="cnameAddInput">username:</label>
+                            <input type="text" class="form-control" id="cnameAddInput" name="cname"
+                                   placeholder="请输入用户姓名"/>
+                        </div>
+                        <div id="cnameTips"></div>
+                        <div class="form-group">
+                            <label for="cpassAddInput">password:</label>
+                            <input type="password" class="form-control" id="cpassAddInput" name="cpass"
+                                   placeholder="请输入密码">
+                        </div>
                         <div class="form-group">
                             <label for="cphoneAddInput">cphone:</label>
                             <input type="text" class="form-control" id="cphoneAddInput" name="cphone"
@@ -76,8 +76,9 @@
                         </div>
                         <div class="form-group">
                             <label for="cavatarAddInput">cavatar:</label>
-                            <img data-my="disAvatar" src="" style="width: 100px;height: 100px;" />
-                            <input style="display: none;" type="file" class="form-control" id="cavatarAddInput" data-my="inputAvatar" name="file"
+                            <img data-my="disAvatar" src="" style="width: 100px;height: 100px;"/>
+                            <input style="display: none;" type="file" class="form-control" id="cavatarAddInput"
+                                   data-my="inputAvatar" name="file"
                                    placeholder="请输入头像">
                         </div>
                         <div class="form-group">
@@ -114,12 +115,12 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" action="${app}/Customer/opt" class="form-horizontal" role="form">
+                <form method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group">
                         <label for="cidUpdateInput">cid:</label>
                         <input type="text" readonly="readonly" class="form-control" id="cidUpdateInput" name="cid"
-                               placeholder="uid"/>
+                               placeholder="cid"/>
                     </div>
                     <div class="form-group">
                         <label for="cnameUpdateInput">姓名username:</label>
@@ -131,6 +132,23 @@
                         <label for="cpassUpdateInput">密码password:</label>
                         <input type="password" class="form-control" id="cpassUpdateInput" name="cpass"
                                placeholder="请输入新密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="cphoneUpdateInput">cphone:</label>
+                        <input type="text" class="form-control" id="cphoneUpdateInput" name="cphone"
+                               placeholder="请输入新电话">
+                    </div>
+                    <div class="form-group">
+                        <label for="cemailUpdateInput">cemail:</label>
+                        <input type="text" class="form-control" id="cemailUpdateInput" name="cemail"
+                               placeholder="请输入新邮箱">
+                    </div>
+                    <div class="form-group">
+                        <label for="cavatarUpdateInput">cavatar:</label>
+                        <img data-my="disAvataru" src="" style="width: 100px;height: 100px;"/>
+                        <input style="display: none;" type="file" class="form-control" id="cavatarUpdateInput"
+                               data-my="inputAvataru" name="file"
+                               placeholder="请输入头像">
                     </div>
 
                     <div class="form-group">
@@ -234,6 +252,12 @@
         $("#updateObjBtn").click(updateObj);
         //给每条记录的删除按钮添加事件
         $(document).on("click", ".delBtn", deleteSingleRecord);
+        //给需要点击之后上传图片的区域添加点击事件,确保能够调用文件域的点击事件
+        $('[data-my="disAvatar"]').click(function (eve) {$('[data-my="inputAvatar"]').click();});
+        $('[data-my="inputAvatar"]').change(choiceAvatar);
+
+        $('[data-my="disAvataru"]').click(function (eve) {$('[data-my="inputAvataru"]').click();});
+        $('[data-my="inputAvataru"]').change(choiceAvataru);
     });
 
     //修改信息时从远端获取数据并填入表单
@@ -250,6 +274,9 @@
                 //回填数据
                 $("#cidUpdateInput").val(result.dataZone.obj.cid);
                 $("#cnameUpdateInput").val(result.dataZone.obj.cname);
+                $("#cphoneUpdateInput").val(result.dataZone.obj.cphone);
+                $("#cemailUpdateInput").val(result.dataZone.obj.cemail);
+                $('#cavatarUpdateInput [data-my="disAvatariu"]').attr('src',result.dataZone.obj.cavatar);
                 $("#addTimeUpdateInput").val(new Date(result.dataZone.obj.addTime).Format("yyyy-MM-dd"));
 
             },
@@ -283,12 +310,15 @@
     function updateObj() {
         //修改数据之前先进行数据校验
         //校验通过向服务器发送请求
+        var formData = new FormData($("#updateModal form").get(0));
         $.ajax({
-            url: "${app}/customer/opt",
-            type: "PUT",
-            data: $("#updateModal form").serialize(),
+            url: "${app}/customer/optu",
+            type: "POST",
+            data: formData,
+            dataType:"json",
+            contentType:false,//此处对应head处的文档声明
+            processData:false,//取消默认的预处理行为
             success: function (result) {
-
                 $("#updateModal").modal("hide");//关闭模态框
                 gotoPage(currentPage);//回到当前页面
                 alertTips(result.message,"alert-success");
@@ -583,6 +613,29 @@
             return false;
         return !isNaN(d.getTime());
     }
+
+    //点击图片能够调用 文件域的点击事件
+
+    //文件域的值发生改变,将图片改变
+    function choiceAvatar(e){
+        var reader = new FileReader();
+        reader.onload = (function () {
+            return function (e) {
+                $('[data-my="disAvatar"]').attr('src',this.result);
+            }
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    };
+
+    function choiceAvataru(e){
+        var reader = new FileReader();
+        reader.onload = (function () {
+            return function (e) {
+                $('[data-my="disAvataru"]').attr('src',this.result);
+            }
+        })(e.target.files[0]);
+        reader.readAsDataURL(e.target.files[0]);
+    };
 </script>
 </body>
 </html>

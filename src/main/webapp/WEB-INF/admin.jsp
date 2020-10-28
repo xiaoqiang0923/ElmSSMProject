@@ -62,7 +62,7 @@
 </nav>
 <hr/>
 
-<iframe src="http://www.baidu.com" name="dataDisplay"  width="100%" height="1000"></iframe>
+<iframe src="${app}/adminuser/adminpage" name="dataDisplay"  width="100%" height="1000"></iframe>
 
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 <script src="${app}/static/js/jquery-3.3.1.js"></script>

@@ -15,6 +15,16 @@ public class Promotion  implements Serializable {
 
     private Date addTime;
 
+    public Promotion() {
+    }
+
+    public Promotion(Integer pid, String pname, String introduction, Date addTime) {
+        this.pid = pid;
+        this.pname = pname;
+        this.introduction = introduction;
+        this.addTime = addTime;
+    }
+
     public Integer getPid() {
         return pid;
     }

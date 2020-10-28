@@ -90,8 +90,8 @@ public class CustomerController {
     @ResponseBody
     @RequestMapping(value = "/opt/{cid}",method = RequestMethod.GET)
     public MessageAndData optSelectPrimaryKey(@PathVariable("cid")Integer cid){
-        Customer customer = customerService.selectByPrimaryKey(cid);
-        return MessageAndData.success("查询成功").add("customer",customer);
+        Customer obj = customerService.selectByPrimaryKey(cid);
+        return MessageAndData.success("查询成功").add("obj",obj);
     }
 
 //添加新数据
@@ -142,7 +142,7 @@ public class CustomerController {
 
     //    如果使用put方法,记得要在web.xml中添加相应过滤器,对象不能封装
     @ResponseBody
-    @RequestMapping(value = "/opt",method = RequestMethod.PUT)
+    @RequestMapping(value = "/optu",method = RequestMethod.POST)
     public MessageAndData optUpdate(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, Customer obj) throws IOException {
         String path="c:\\upload";
 //        String path = request.getSession().getServletContext().getRealPath("/images/upload");

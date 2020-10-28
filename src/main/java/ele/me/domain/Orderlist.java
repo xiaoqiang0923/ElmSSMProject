@@ -14,12 +14,19 @@ public class Orderlist  implements Serializable {
     private Integer paysstatus;
 
     private Integer ogid;
+    private Goods goods;
 
     private Integer ocid;
+    private Customer customer;
 
     private Integer obid;
+    private Business business;
 
     private Date addTime;
+
+    public Orderlist() {
+    }
+
 
     public Integer getOid() {
         return oid;
@@ -75,5 +82,29 @@ public class Orderlist  implements Serializable {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 }
