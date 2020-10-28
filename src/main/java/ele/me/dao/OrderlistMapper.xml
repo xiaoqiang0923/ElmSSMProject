@@ -240,4 +240,47 @@
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where oid = #{oid,jdbcType=INTEGER}
   </update>
+
+<!--  自己创建的-->
+  <resultMap id="BaseResultWithObjectMap" type="ele.me.domain.Orderlist">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="oamount" jdbcType="INTEGER" property="oamount" />
+    <result column="paysstatus" jdbcType="INTEGER" property="paysstatus" />
+    <result column="ogid" jdbcType="INTEGER" property="ogid" />
+    <result column="ocid" jdbcType="INTEGER" property="ocid" />
+    <result column="obid" jdbcType="INTEGER" property="obid" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <association property="goods" javaType="ele.me.domain.Goods" select="ele.me.dao.GoodsMapper.selectByPrimaryKey" column="ogid">
+      <id property="gid" column="gid"></id>
+      <result property="gname" column="gname"></result>
+    </association>
+    <association property="customer" javaType="ele.me.domain.Customer" select="ele.me.dao.CustomerMapper.selectByPrimaryKey" column="ocid">
+      <id property="cid" column="cid"></id>
+      <result property="cname" column="cname"></result>
+    </association>
+    <association property="business" javaType="ele.me.domain.Business" select="ele.me.dao.BusinessMapper.selectByPrimaryKey" column="obid">
+      <id property="bid" column="bid"></id>
+      <result property="bname" column="bname"></result>
+    </association>
+  </resultMap>
+  <select id="selectWithObjectByExample" parameterType="ele.me.domain.OrderlistExample" resultMap="BaseResultWithObjectMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orderlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWithObjectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultWithObjectMap">
+    select
+    <include refid="Base_Column_List" />
+    from orderlist
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
 </mapper>
