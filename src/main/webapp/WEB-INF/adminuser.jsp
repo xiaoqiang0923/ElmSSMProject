@@ -176,9 +176,9 @@
 <script src="${app}/static/js/axios.js"></script>
 <script src="${app}/static/js/custom.js"></script>
 <script>
-    var currentPage=1;
-    var maxPages=1;
-
+    //为了跳转页面方便,设置全局变量保存当前页和最大页码数
+    var currentPage=1;//当前页码
+    var maxPages=1;//最大页码
     $(function () {
         //为了跳转页面方便,设置全局变量保存当前页和最大页码数
         //页面加载时向远端获取所有数据,页面定位在第1页

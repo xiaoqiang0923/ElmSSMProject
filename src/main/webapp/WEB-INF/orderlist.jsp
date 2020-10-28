@@ -43,7 +43,6 @@
                 <h4 class="modal-title">添加新订单</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <!-- 模态框主体 -->
             <div class="modal-body">
                 <form method="post" action="${app}/orderlist/opt" class="form-horizontal" role="form">
@@ -53,49 +52,28 @@
                             <input type="text" class="form-control" id="oamountAddInput" name="oamount"
                                    placeholder="请输入购买数量"/>
                         </div>
-
                         <div class="form-group">
-                            <label for="cpassAddInput">password:</label>
-                            <select>
+                            <label for="paysstatusAddInput">paystatus:</label>
+                            <select class="form-control" id="paysstatusAddInput" name="paysstatus">
                                 <option value="1">已结算</option>
                                 <option value="0">未结算</option>
                             </select>
-                            <input type="password" class="form-control" id="cpassAddInput" name="cpass"
-                                   placeholder="请输入密码">
                         </div>
                         <div class="form-group">
-                            <label for="cphoneAddInput">cphone:</label>
-                            <input type="text" class="form-control" id="cphoneAddInput" name="cphone"
-                                   placeholder="请输入电话">
+                            <label for="ogidAddInput">ogid:</label><input list="oglist" type="text" class="form-control" id="ogidAddInput" name="ogid" placeholder="所属商品"/>
+                            <datalist id="oglist">
+                            </datalist>
                         </div>
                         <div class="form-group">
-                            <label for="cemailAddInput">cemail:</label>
-                            <input type="text" class="form-control" id="cemailAddInput" name="cemail"
-                                   placeholder="请输入邮箱">
+                            <label for="ocidAddInput">ocid:</label><input list="oclist" type="text" class="form-control"  id="ocidAddInput" name="ocid" placeholder="所属用户"/>
+                            <datalist id="oclist">
+                            </datalist>
                         </div>
                         <div class="form-group">
-                            <label for="cbirthAddInput">cbirth:</label>
-                            <input type="date" class="form-control" id="cbirthAddInput" name="cbirth"
-                                   placeholder="请输入生日">
+                            <label for="obidAddInput">obid:</label><input list="oblist" type="text" class="form-control" id="obidAddInput" name="obid" placeholder="所属商户"/>
+                            <datalist id="oblist">
+                            </datalist>
                         </div>
-                        <div class="form-group">
-                            <label for="cavatarAddInput">cavatar:</label>
-                            <img data-my="disAvatar" src="" style="width: 100px;height: 100px;"/>
-                            <input style="display: none;" type="file" class="form-control" id="cavatarAddInput"
-                                   data-my="inputAvatar" name="file"
-                                   placeholder="请输入头像">
-                        </div>
-                        <div class="form-group">
-                            <label for="cgenderAddInput">cgender:</label>
-                            <input type="text" class="form-control" id="cgenderAddInput" name="cgender"
-                                   placeholder="请输入性别">
-                        </div>
-                        <div class="form-group">
-                            <label for="cstatusAddInput">cstatus:</label>
-                            <input type="text" class="form-control" id="cstatusAddInput" name="cstatus"
-                                   placeholder="请输入状态">
-                        </div>
-
                     <div class="form-group">
                         <button id="addObjBtn" type="button" class="btn btn-block btn-primary">添加</button>
                     </div>
@@ -109,6 +87,7 @@
     </div>
 </div>
 
+<!--修改信息弹出框-->
 <div class="modal fade" id="updateModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -116,43 +95,41 @@
                 <h4 class="modal-title">修改信息</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+                <form method="post" class="form-horizontal" role="form">
                     <input type="hidden" name="_method" value="PUT"/>
                     <div class="form-group">
-                        <label for="cidUpdateInput">cid:</label>
-                        <input type="text" readonly="readonly" class="form-control" id="cidUpdateInput" name="cid"
-                               placeholder="cid"/>
+                        <label for="oidUpdateInput">oid:</label>
+                        <input type="text" readonly="readonly" class="form-control" id="oidUpdateInput" name="oid"
+                               placeholder="oid"/>
                     </div>
                     <div class="form-group">
-                        <label for="cnameUpdateInput">姓名username:</label>
-                        <input type="text" readonly="readonly" class="form-control" id="cnameUpdateInput"
-                               name="cname"
-                               placeholder="请输入用户姓名"/>
+                        <label for="oamountUpdateInput">amount:</label>
+                        <input type="text" class="form-control" id="oamountUpdateInput" name="oamount"
+                               placeholder="请输入购买数量"/>
                     </div>
                     <div class="form-group">
-                        <label for="cpassUpdateInput">密码password:</label>
-                        <input type="password" class="form-control" id="cpassUpdateInput" name="cpass"
-                               placeholder="请输入新密码">
+                        <label for="paysstatusUpdateInput">paystatus:</label>
+                        <select class="form-control" id="paysstatusUpdateInput" name="paysstatus">
+                            <option value="1">已结算</option>
+                            <option value="0">未结算</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="cphoneUpdateInput">cphone:</label>
-                        <input type="text" class="form-control" id="cphoneUpdateInput" name="cphone"
-                               placeholder="请输入新电话">
+                        <label for="ogUpdateInput">ogid:</label><input list="glist" type="text" class="form-control" id="ogUpdateInput" name="ogid" placeholder="所属商品"/>
+                        <datalist id="glist">
+                        </datalist>
                     </div>
                     <div class="form-group">
-                        <label for="cemailUpdateInput">cemail:</label>
-                        <input type="text" class="form-control" id="cemailUpdateInput" name="cemail"
-                               placeholder="请输入新邮箱">
+                        <label for="ocUpdateInput">ocid:</label><input list="clist" type="text" class="form-control" id="ocUpdateInput" name="ocid" placeholder="所属用户"/>
+                        <datalist id="clist">
+                        </datalist>
                     </div>
                     <div class="form-group">
-                        <label for="cavatarUpdateInput">cavatar:</label>
-                        <img data-my="disAvataru" src="" style="width: 100px;height: 100px;"/>
-                        <input style="display: none;" type="file" class="form-control" id="cavatarUpdateInput"
-                               data-my="inputAvataru" name="file"
-                               placeholder="请输入头像">
+                        <label for="obUpdateInput">obid:</label><input list="oblist" type="text" class="form-control" id="obUpdateInput" name="obid" placeholder="所属商户"/>
+                        <datalist id="blist">
+                        </datalist>
                     </div>
 
                     <div class="form-group">
@@ -163,25 +140,24 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
             </div>
-
         </div>
     </div>
 </div>
 
+<!--查询栏-->
 <form id="searchForm" method="get" action="${app}/customer/list">
-    <select id="cidList" name="cidCondition">
-        <option selected="selected" value="-1">不限cid</option>
-        <option value="0">cid大于</option>
-        <option value="1">cid等于</option>
-        <option value="2">cid小于</option>
+    订单状态:
+    <select id="statusList" name="paysstatus">
+        <option value="0">未结算</option>
+        <option value="1">已结算</option>
     </select>
-
-    <input name="cid" type="text" value="" placeholder="cid"/>
-    <input type="text" placeholder="cname" name="cname" value=""/>
+    <input name="oid" type="text" value="" placeholder="oid"/>
     <input type="date" name="startDate" value="2020-10-01"/>
     <input type="date" name="endDate" value="2020-11-12"/>
     <input class="btn btn-primary" type="button" id="searchBtn" value="查询"/>
 </form>
+
+<!-- 新增删除按钮 -->
 <div>
     <!-- 按钮：用于打开模态框 -->
     <button id="openAddModalBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">新增
@@ -196,15 +172,12 @@
             <input class="btn btn-sm btn-warning" type="button" id="reverseBtn" value="反选"/>
         </th>
         <th>序号</th>
-        <th>用户id(uid)</th>
-        <th>姓名(cname)</th>
-        <th>电话(cphone)</th>
-        <th>邮箱(cemail)</th>
-        <th>密码(cpass)</th>
-        <th>生日(cbirth)</th>
-        <th>头像(cavatar)</th>
-        <th>性别(cgender)</th>
-        <th>状态(cstatus)</th>
+        <th>订单id(oid)</th>
+        <th>购买数量(oamount)</th>
+        <th>订购商品(ogid)</th>
+        <th>订购用户(ocid)</th>
+        <th>所属商家(obid)</th>
+        <th>支付状态(cphone)</th>
         <th>创建时间(addTime)</th>
         <th>操作(修改)</th>
         <th>操作(删除)</th>
@@ -216,10 +189,8 @@
 </table>
 <div class="row">
     <div id="pageList" class="col-12 col-md-8">
-
     </div>
     <div id="pageTips" class="col-12 col-md-4">
-
     </div>
 </div>
 
@@ -233,8 +204,9 @@
 <script src="${app}/static/js/axios.js"></script>
 <script src="${app}/static/js/custom.js"></script>
 <script>
-    var currentPage=1;
-    var maxPages=1;
+    //为了跳转页面方便,设置全局变量保存当前页和最大页码数
+    var currentPage=1;//当前页码
+    var maxPages=1;//最大页码
 
     $(function () {
         //为了跳转页面方便,设置全局变量保存当前页和最大页码数
@@ -256,14 +228,10 @@
         $("#updateObjBtn").click(updateObj);
         //给每条记录的删除按钮添加事件
         $(document).on("click", ".delBtn", deleteSingleRecord);
-        //给需要点击之后上传图片的区域添加点击事件,确保能够调用文件域的点击事件
-        $('[data-my="disAvatar"]').click(function (eve) {$('[data-my="inputAvatar"]').click();});
-        $('[data-my="inputAvatar"]').change(choiceAvatar);
 
-        $('[data-my="disAvataru"]').click(function (eve) {$('[data-my="inputAvataru"]').click();});
-        $('[data-my="inputAvataru"]').change(choiceAvataru);
     });
 
+//修改数据方法
     //修改信息时从远端获取数据并填入表单
     function updateForm(ele) {
         //打开模态框
