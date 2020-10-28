@@ -1,11 +1,13 @@
 package ele.me.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
+@JsonIgnoreProperties(value = "handler")
 public class Orderlist  implements Serializable {
     private Integer oid;
 
@@ -27,6 +29,18 @@ public class Orderlist  implements Serializable {
     public Orderlist() {
     }
 
+    public Orderlist(Integer oid, Integer oamount, Integer paysstatus, Integer ogid, Goods goods, Integer ocid, Customer customer, Integer obid, Business business, Date addTime) {
+        this.oid = oid;
+        this.oamount = oamount;
+        this.paysstatus = paysstatus;
+        this.ogid = ogid;
+        this.goods = goods;
+        this.ocid = ocid;
+        this.customer = customer;
+        this.obid = obid;
+        this.business = business;
+        this.addTime = addTime;
+    }
 
     public Integer getOid() {
         return oid;
