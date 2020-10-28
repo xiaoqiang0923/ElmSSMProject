@@ -33,11 +33,15 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int insert(Customer record) {
+        //对传递过来的明文密码加密为密文然后比对
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Customer record) {
+        //对传递过来的明文密码加密为密文然后比对
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.insertSelective(record);
     }
 
@@ -53,21 +57,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public int updateByExampleSelective(Customer record, CustomerExample example) {
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Customer record, CustomerExample example) {
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Customer record) {
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Customer record) {
+        record.setCpass(MD5Util.getMD5(record.getCpass()));
         return customerMapper.updateByPrimaryKey(record);
     }
 }

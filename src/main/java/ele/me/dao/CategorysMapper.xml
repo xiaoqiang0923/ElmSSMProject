@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="ele.me.domain.Categorys">
     <id column="cgid" jdbcType="INTEGER" property="cgid" />
     <result column="cgname" jdbcType="VARCHAR" property="cgname" />
+    <result column="cdes" jdbcType="VARCHAR" property="cdes" />
+    <result column="cavatar" jdbcType="VARCHAR" property="cavatar" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    cgid, cgname, add_time
+    cgid, cgname, cdes, cavatar, add_time
   </sql>
   <select id="selectByExample" parameterType="ele.me.domain.CategorysExample" resultMap="BaseResultMap">
     select
@@ -98,10 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="ele.me.domain.Categorys">
-    insert into categorys (cgid, cgname, add_time
-      )
-    values (#{cgid,jdbcType=INTEGER}, #{cgname,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}
-      )
+    insert into categorys (cgid, cgname, cdes, 
+      cavatar, add_time)
+    values (#{cgid,jdbcType=INTEGER}, #{cgname,jdbcType=VARCHAR}, #{cdes,jdbcType=VARCHAR}, 
+      #{cavatar,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="ele.me.domain.Categorys">
     insert into categorys
@@ -111,6 +113,12 @@
       </if>
       <if test="cgname != null">
         cgname,
+      </if>
+      <if test="cdes != null">
+        cdes,
+      </if>
+      <if test="cavatar != null">
+        cavatar,
       </if>
       <if test="addTime != null">
         add_time,
@@ -122,6 +130,12 @@
       </if>
       <if test="cgname != null">
         #{cgname,jdbcType=VARCHAR},
+      </if>
+      <if test="cdes != null">
+        #{cdes,jdbcType=VARCHAR},
+      </if>
+      <if test="cavatar != null">
+        #{cavatar,jdbcType=VARCHAR},
       </if>
       <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
@@ -143,6 +157,12 @@
       <if test="record.cgname != null">
         cgname = #{record.cgname,jdbcType=VARCHAR},
       </if>
+      <if test="record.cdes != null">
+        cdes = #{record.cdes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cavatar != null">
+        cavatar = #{record.cavatar,jdbcType=VARCHAR},
+      </if>
       <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
@@ -155,6 +175,8 @@
     update categorys
     set cgid = #{record.cgid,jdbcType=INTEGER},
       cgname = #{record.cgname,jdbcType=VARCHAR},
+      cdes = #{record.cdes,jdbcType=VARCHAR},
+      cavatar = #{record.cavatar,jdbcType=VARCHAR},
       add_time = #{record.addTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,6 +188,12 @@
       <if test="cgname != null">
         cgname = #{cgname,jdbcType=VARCHAR},
       </if>
+      <if test="cdes != null">
+        cdes = #{cdes,jdbcType=VARCHAR},
+      </if>
+      <if test="cavatar != null">
+        cavatar = #{cavatar,jdbcType=VARCHAR},
+      </if>
       <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
       </if>
@@ -175,7 +203,10 @@
   <update id="updateByPrimaryKey" parameterType="ele.me.domain.Categorys">
     update categorys
     set cgname = #{cgname,jdbcType=VARCHAR},
+      cdes = #{cdes,jdbcType=VARCHAR},
+      cavatar = #{cavatar,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where cgid = #{cgid,jdbcType=INTEGER}
   </update>
+  
 </mapper>

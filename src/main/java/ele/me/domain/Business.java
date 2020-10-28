@@ -32,10 +32,9 @@ public class Business  implements Serializable {
     public Business() {
     }
 
-    public Business(Integer bid, String bname, String bpassword, String bimg, Double bscore, String bdescription, String courier, String blocation, Double delivery, Double freight, Date addTime) {
+    public Business(Integer bid, String bname, String bimg, Double bscore, String bdescription, String courier, String blocation, Double delivery, Double freight, Date addTime) {
         this.bid = bid;
         this.bname = bname;
-        this.bpassword = bpassword;
         this.bimg = bimg;
         this.bscore = bscore;
         this.bdescription = bdescription;
@@ -45,6 +44,7 @@ public class Business  implements Serializable {
         this.freight = freight;
         this.addTime = addTime;
     }
+
 
     public Integer getBid() {
         return bid;
