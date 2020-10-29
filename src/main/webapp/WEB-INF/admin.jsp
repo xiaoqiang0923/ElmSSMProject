@@ -56,7 +56,7 @@
             <a target="dataDisplay" class="nav-link" href="${app}/goods/goodspage">商品管理</a>
         </li>
         <li class="nav-item">
-            <a target="dataDisplay" class="nav-link" href="${app}/orderlist/orderlistspage">订单管理</a>
+            <a target="dataDisplay" class="nav-link" href="${app}/orderlist/orderlistpage">订单管理</a>
         </li>
     </ul>
 </nav>

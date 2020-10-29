@@ -177,7 +177,7 @@
         <th>订购商品(ogid)</th>
         <th>订购用户(ocid)</th>
         <th>所属商家(obid)</th>
-        <th>支付状态(cphone)</th>
+        <th>支付状态(paysstatus)</th>
         <th>创建时间(addTime)</th>
         <th>操作(修改)</th>
         <th>操作(删除)</th>
@@ -234,6 +234,9 @@
 //修改数据方法
     //修改信息时从远端获取数据并填入表单
     function updateForm(ele) {
+        //声明变量用以接收原始值,主要用于填写下拉列表
+        var choice1;
+        var choice2;
         //打开模态框
         $("#updateModal").modal({backdrop: "static"});
         //将表单中原有数据清空
@@ -256,6 +259,10 @@
             }
         });
 
+        //填充列表
+        getAndFill("${app}/business/listJSON",$("#bulist"),"bid","bname",choice1);
+        getAndFill("${app}/categorys/listJSON",$("#cglist"),"cgid","cgname",choice2);
+
         return false;//取消超链接的默认跳转
     }
 
@@ -264,8 +271,8 @@
         //校验通过向服务器发送请求
         // alert("search被调用了");
         $.ajax({
-            //url: "${app}/customer/list?startDate=$("#startDate").val()&endDate=2020-10-13",
-            url: "${app}/customer/list",
+
+            url: "${app}/orderlist/list",
             type: "GET",
             data: $("#searchForm").serialize(),
             success: function (result) {
@@ -306,6 +313,9 @@
     function addForm() {
         //打开模态框
         $("#addModal").modal({backdrop: "static"});
+        //填充列表
+        getAndFill("${app}/business/listJSON",$("#blist"),"bid","bname");
+        getAndFill("${app}/categorys/listJSON",$("#cglist"),"cgid","cgname");
         //将表单中原有数据清空
         $("#addModal form").get(0).reset();
     }
@@ -390,7 +400,7 @@
         pageSize = pageSize == null ? 10 : pageSize;
         $.ajax({
             type: "GET",
-            url: "${app}/customer/list?pageNum=" + pageNum + "&pageSize=" + pageSize,
+            url: "${app}/orderlist/list?pageNum=" + pageNum + "&pageSize=" + pageSize,
             dataType: "json",
             data: $("#searchForm").serialize(),
             success: function (result) {
@@ -417,23 +427,19 @@
             //构建多个单元格
             var checkboxTh = $('<th><input type="checkbox" name="choiceList" value="${item.cid}"/></th>');
             var countTh = $('<th></th>').text(index + 1);
-            var td1 = $('<td></td>').text(item.cid);
-            var td2 = $('<td></td>').text(item.cname);
-            var td3 = $('<td></td>').text(item.cphone);
-            var td4 = $('<td></td>').text(item.cemail);
-            var td5 = $('<td></td>').text(item.cpass);
-            var td6 = $('<td></td>').text(new Date(item.cbirth).Format("yyyy-MM-dd"));
-            var td7 = $('<td></td>').text(item.cavatar);
-            var td8 = $('<td></td>').text(item.cgender);
-            var td9 = $('<td></td>').text(item.cstatus);
+            var td1 = $('<td></td>').text(item.oid);
+            var td2 = $('<td></td>').text(item.oamount);
+            var td3 = $('<td></td>').text(item.ogid);
+            var td4 = $('<td></td>').text(item.ocid);
+            var td5 = $('<td></td>').text(item.obid);
+            var td6 = $('<td></td>').text(item.paysstatus);
             var addTimeTd = $('<td></td>').text(new Date(item.addTime).Format("yyyy-MM-dd HH:mm:ss"));
-            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/customer/opt/' + item.cid + '">修改</a>');
-            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/customer/opt/' + item.cid + '">删除</a>');
+            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/orderlist/opt/' + item.cid + '">修改</a>');
+            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/orderlist/opt/' + item.cid + '">删除</a>');
             //将单元格追加到行中
             uTr.append(checkboxTh).append(countTh).append(td1)
                 .append(td2).append(td3).append(td4).append(td5).append(td6)
-                .append(td7).append(td8).append(td9).append(addTimeTd)
-                .append(upBtnTd).append(delBtnTd);
+                .append(addTimeTd).append(upBtnTd).append(delBtnTd);
             // 将行追加到表体中
             $("#objTable tbody").append(uTr);
         });
