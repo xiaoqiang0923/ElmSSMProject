@@ -46,35 +46,35 @@ public class OrderlistController {
         OrderlistExample example = new OrderlistExample();
         OrderlistExample.Criteria criteria = example.createCriteria();
 
-        if(condition.getOid()!=null){
-            criteria.andOidEqualTo(condition.getOid());
-        }
-
-        Integer pstatus = condition.getPaysstatus();
-        if(pstatus!=null && pstatus!=-1 && condition.getPaysstatus()!=null){//不限定条件
-            if(pstatus == 0){
-                criteria.andPaysstatusEqualTo(condition.getPaysstatus());
-            }
-            if(pstatus == 1){
-                criteria.andPaysstatusEqualTo(condition.getPaysstatus());
-            }
-
-        }
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate1 = dateFormat.parse("1970-01-01");
-        Date endDate1 = dateFormat.parse("2999-12-31");
-        Date startDate = condition.getStartDate()==null?startDate1:condition.getStartDate();
-        Date endDate = condition.getEndDate()==null?endDate1:condition.getEndDate();
-        if(startDate.after(endDate)){
-            Date tempDate = startDate;
-            startDate = endDate;
-            endDate = tempDate;
-        }
-        criteria.andAddTimeBetween(startDate,endDate);
+//        if(condition.getOid()!=null){
+//            criteria.andOidEqualTo(condition.getOid());
+//        }
+//
+//        Integer pstatus = condition.getPaysstatus();
+//        if(pstatus!=null && pstatus!=-1 && condition.getPaysstatus()!=null){//不限定条件
+//            if(pstatus == 0){
+//                criteria.andPaysstatusEqualTo(condition.getPaysstatus());
+//            }
+//            if(pstatus == 1){
+//                criteria.andPaysstatusEqualTo(condition.getPaysstatus());
+//            }
+//
+//        }
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date startDate1 = dateFormat.parse("1970-01-01");
+//        Date endDate1 = dateFormat.parse("2999-12-31");
+//        Date startDate = condition.getStartDate()==null?startDate1:condition.getStartDate();
+//        Date endDate = condition.getEndDate()==null?endDate1:condition.getEndDate();
+//        if(startDate.after(endDate)){
+//            Date tempDate = startDate;
+//            startDate = endDate;
+//            endDate = tempDate;
+//        }
+//        criteria.andAddTimeBetween(startDate,endDate);
         //初始化,约束
         PageHelper.startPage(pageNum, pageSize);
-        List<Orderlist> lists = orderlistService.selectByExampleWithObject(example);
+        List<Orderlist> lists = orderlistService.selectByExampleWithObject(null);
         //使用pageHelper的方式封装数据,默认的导航列表长度为8
         PageInfo pageInfo = new PageInfo(lists, 8);
         return MessageAndData.success("").add("pageInfo",pageInfo);

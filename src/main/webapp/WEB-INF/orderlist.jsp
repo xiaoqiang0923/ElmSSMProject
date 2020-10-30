@@ -247,11 +247,11 @@
             type: "GET",
             success: function (result) {
                 //回填数据
-                $("#cidUpdateInput").val(result.dataZone.obj.cid);
-                $("#cnameUpdateInput").val(result.dataZone.obj.cname);
-                $("#cphoneUpdateInput").val(result.dataZone.obj.cphone);
-                $("#cemailUpdateInput").val(result.dataZone.obj.cemail);
-                $('#cavatarUpdateInput [data-my="disAvatariu"]').attr('src',result.dataZone.obj.cavatar);
+                $("#oidUpdateInput").val(result.dataZone.obj.oid);
+                $("#oamountUpdateInput").val(result.dataZone.obj.oamount);
+                $("#paysstatusUpdateInput").val(result.dataZone.obj.paysstatus);
+                $("#ogUpdateInput").val(result.dataZone.obj.goods.gname);
+
                 $("#addTimeUpdateInput").val(new Date(result.dataZone.obj.addTime).Format("yyyy-MM-dd"));
 
             },
@@ -291,7 +291,7 @@
         //校验通过向服务器发送请求
         var formData = new FormData($("#updateModal form").get(0));
         $.ajax({
-            url: "${app}/customer/optu",
+            url: "${app}/orderlist/optu",
             type: "POST",
             data: formData,
             dataType:"json",
@@ -325,7 +325,7 @@
         //校验通过向服务器发送请求
         var formData = new FormData($("#addModal form").get(0));
         $.ajax({
-            url: "${app}/customer/opt",
+            url: "${app}/orderlist/opt",
             type: "POST",
             data: formData,
             dataType:"json",
@@ -380,7 +380,7 @@
             //向服务器发送请求,我们已经使用过get和post方法,这次使用最底层的ajax方法
             $.ajax({
                 type: "DELETE",
-                url: "${app}/customer/opt/" + ids,
+                url: "${app}/orderlist/opt/" + ids,
                 success: function (result) {
                     // alert(result.message);
                     // $(document).flush();//刷新当前页
@@ -592,28 +592,7 @@
         return !isNaN(d.getTime());
     }
 
-    //点击图片能够调用 文件域的点击事件
 
-    //文件域的值发生改变,将图片改变
-    function choiceAvatar(e){
-        var reader = new FileReader();
-        reader.onload = (function () {
-            return function (e) {
-                $('[data-my="disAvatar"]').attr('src',this.result);
-            }
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    };
-
-    function choiceAvataru(e){
-        var reader = new FileReader();
-        reader.onload = (function () {
-            return function (e) {
-                $('[data-my="disAvataru"]').attr('src',this.result);
-            }
-        })(e.target.files[0]);
-        reader.readAsDataURL(e.target.files[0]);
-    };
 </script>
 </body>
 </html>
