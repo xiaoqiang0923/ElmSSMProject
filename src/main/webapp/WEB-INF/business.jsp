@@ -40,35 +40,41 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">添加新用户</h4>
+                <h4 class="modal-title">添加新商户</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form action="${app}/Orderlist/opt" enctype="multipart/form-data" class="form-horizontal"
+                <form action="${app}/business/opt" enctype="multipart/form-data" class="form-horizontal"
                       role="form">
                     <div class="form-group">
-                        <label>oamount:</label><input type="text" class="form-control" name="oamount"/>
+                        <label>bname:</label><input type="text" class="form-control" name="bname"/>
                     </div>
                     <div class="form-group">
-                        <label>paysstatus:</label><input type="text" class="form-control" name="paysstatus"/>
+                        <label>bpassword:</label><input type="password" class="form-control" name="bpassword"/>
                     </div>
                     <div class="form-group">
-                        <label>ogid:</label><input list="glist" type="text" class="form-control" name="ogid"/>
-                        <datalist id="glist" class="custom-select-sm">
-                        </datalist>
+                        <label>bdescription:</label><textarea type="text" class="form-control" name="bdescription"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>ocid:</label><input list="clist" type="text" class="form-control" name="ocid"/>
+                        <label>delivery:</label><input type="text" class="form-control" name="delivery"/>
                     </div>
-                    <datalist id="clist" class="custom-select-sm">
-                    </datalist>
                     <div class="form-group">
-                        <label>obid:</label><input list="blist" type="text" class="form-control" name="obid"/>
+                        <label>courier:</label><input type="text" class="form-control" name="courier"/>
                     </div>
-                    <datalist id="blist" class="custom-select-sm">
-                    </datalist>
+                    <div class="form-group">
+                        <label>bscore:</label><input type="range" min="0" max="5" step="1" class="form-control" name="bscore"/>
+                    </div>
+                    <div class="form-group">
+                        <label>bimg:</label>
+                        <img data-my="disImg" src="" style="width: 100px;height: 100px;"/>
+                        <input style="display: none;" type="file" class="form-control" data-my="inputImg"
+                               name="file"/>
+                    </div>
+                    <div class="form-group">
+                        <label>blocation:</label><textarea class="form-control" name="blocation"></textarea>
+                    </div>
 
                     <div class="form-group">
                         <button id="addObjBtn" type="button" class="btn btn-block btn-primary">添加</button>
@@ -93,31 +99,34 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form action="${app}/orderlist/opt" enctype="multipart/form-data" class="form-horizontal"
+                <form action="${app}/business/opt" enctype="multipart/form-data" class="form-horizontal"
                       role="form">
                     <div class="form-group">
-                        <label>oid:</label><input readonly="readonly" type="text" class="form-control" name="oid"/>
+                        <label>bid:</label><input readonly="readonly" type="text" class="form-control" name="bid"/>
                     </div>
                     <div class="form-group">
-                        <label>oamount:</label><input type="text" class="form-control" name="oamount"/>
+                        <label>bname:</label><input type="text" class="form-control" name="bname"/>
                     </div>
                     <div class="form-group">
-                        <label>opaysstatus:</label><input type="text" class="form-control" name="opaysstatus"/>
+                        <label>bpassword:</label><input type="password" class="form-control" name="bpassword"/>
                     </div>
                     <div class="form-group">
-                        <label>ogid:</label><input list="uglist" type="text" class="form-control" name="ogid"/>
-                    </div>
-                    <datalist id="uglist" class="custom-select-sm">
-                    </datalist>
-                    <div class="form-group">
-                        <label>ocid:</label><input list="uclist" type="text" class="form-control" name="ocid"/>
-                        <datalist id="uclist" class="custom-select-sm">
-                        </datalist>
+                        <label>bdescription:</label><textarea type="text" class="form-control" name="bdescription"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>obid:</label><input list="ublist" type="text" class="form-control" name="obid"/>
-                        <datalist id="ublist" class="custom-select-sm">
-                        </datalist>
+                        <label>delivery:</label><input type="text" class="form-control" name="delivery"/>
+                    </div>
+                    <div class="form-group">
+                        <label>bscore:</label><input type="range" min="0" max="5" step="1" class="form-control" name="bscore"/>
+                    </div>
+                    <div class="form-group">
+                        <label>bimg:</label>
+                        <img data-my="disImg" src="" style="width: 100px;height: 100px;"/>
+                        <input style="display: none;" type="file" class="form-control" data-my="inputImg"
+                               name="file"/>
+                    </div>
+                    <div class="form-group">
+                        <label>blocation:</label><textarea class="form-control" name="blocation"></textarea>
                     </div>
 
                     <div class="form-group">
@@ -134,8 +143,8 @@
 </div>
 
 
-<form id="searchForm" method="get" action="${app}/orderlist/list">
-    <input type="text" placeholder="oamount" name="oamount" value=""/>
+<form id="searchForm" method="get" action="${app}/business/list">
+    <input type="text" placeholder="bname" name="bname" value=""/>
     <input type="date" name="startDate" value="2020-10-01"/>
     <input type="date" name="endDate" value="2020-11-12"/>
     <input class="btn btn-secondary" type="button" id="searchCleanBtn" value="清除条件"/>
@@ -145,7 +154,7 @@
     <!-- 按钮：用于打开模态框 -->
     <button id="openAddModalBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">新增
     </button>
-    <input class="btn btn-danger" type="button" action="${app}/orderlist/opt" id="deletesBtn" value="删除所选"/>
+    <input class="btn btn-danger" type="button" action="${app}/business/opt" id="deletesBtn" value="删除所选"/>
 </div>
 <table id="objTable" class="table table-striped table-bordered table-hover">
     <thead>
@@ -155,12 +164,15 @@
             <input class="btn btn-sm btn-warning" type="button" id="reverseBtn" value="反选"/>
         </th>
         <th>序号#</th>
-        <th>订单id</th>
-        <th>数量</th>
-        <th>状态</th>
-        <th>商品信息</th>
-        <th>客户信息</th>
-        <th>商户信息</th>
+        <th>商户id</th>
+        <th>名称</th>
+        <th>密码</th>
+        <th>描述</th>
+        <th>配送标准</th>
+        <th>快递方式</th>
+        <th>评分</th>
+        <th>头像</th>
+        <th>地址</th>
         <th>创建时间(addTime)</th>
         <th>操作(修改)</th>
         <th>操作(删除)</th>
@@ -215,26 +227,14 @@
         //给每条记录的删除按钮添加事件
         $(document).on("click", ".delBtn", deleteSingleRecord);
         //给需要点击之后上传图片的区域添加点击事件,确保能够调用文件域的点击事件
-        $('[data-my="disAvatar"]').click(function (eve) {
+        $('[data-my="disImg"]').click(function (eve) {
             $(eve.target).next('[type="file"]').click();
         });
-        $('[data-my="inputAvatar"]').change(choiceAvatar);
-    });
-
-
-    //页面专用的代码从这里开始
-
-    $("#openAddModalBtn").click(function () {
-        getAndFill("${app}/business/listJSON", $('#addModal [id="blist"]'), "bid", "bname");
-        getAndFill("${app}/customer/listJSON", $('#addModal [id="clist"]'), "cid", "cname");
-        getAndFill("${app}/goods/listJSON", $('#addModal [id="glist"]'), "gid", "gname");
+        $('[data-my="inputImg"]').change(choiceAvatar);
     });
 
     //修改信息时从远端获取数据并填入表单
     function updateForm(eve) {
-        var choice1;
-        var choice2;
-        var choice3;
         //打开模态框
         $("#updateModal").modal({backdrop: "static"});
         //将表单中原有数据清空,包括数据区内容
@@ -245,24 +245,21 @@
             type: "GET",
             success: function (result) {
                 //回填数据
-                $('#updateModal [name="oid"]').val(result.dataZone.obj.oid);
-                $('#updateModal [name="oamount"]').val(result.dataZone.obj.oamount);
-                $('#updateModal [name="paysstatus"]').val(result.dataZone.obj.paysstatus);
-                $('#updateModal [name="ogid"]').val(result.dataZone.obj.ogid);
-                $('#updateModal [name="ocid"]').val(result.dataZone.obj.ocid);
-                $('#updateModal [name="obid"]').val(result.dataZone.obj.obid);
-                choice1 = result.dataZone.obj.obid;
-                choice2 = result.dataZone.obj.ocid;
-                choice3 = result.dataZone.obj.ogid;
+                $('#updateModal [name="bid"]').val(result.dataZone.obj.bid);
+                $('#updateModal [name="bname"]').val(result.dataZone.obj.bname);
+                $('#updateModal [name="bpass"]').val(result.dataZone.obj.bpassword);
+                $('#updateModal [name="bdescripttion"]').val(result.dataZone.obj.bdescription);
+                $('#updateModal [name="delivery"]').val(result.dataZone.obj.delivery);
+                $('#updateModal [name="courier"]').val(result.dataZone.obj.courier);
+                $('#updateModal [name="blocation"]').val(result.dataZone.obj.blocation);
+                $('#updateModal [name="bbscore"]').val(result.dataZone.obj.bscore);
+                $('#updateModal [data-my="disImg"]').attr('src', result.dataZone.obj.bimg == '' ? '/upload/null.png' : result.dataZone.obj.bavatar);
                 $('#updateModal [name="addTime"]').val(new Date(result.dataZone.obj.addTime).Format("yyyy-MM-dd HH:mm:ss"));
+
             },
             error: function () {
             }
         });
-        //填充列表
-        getAndFill("${app}/business/listJSON", $('#updateModal [id="ublist"]'), "bid", "bname", choice1);
-        getAndFill("${app}/customer/listJSON", $('#updateModal [id="uclist"]'), "cid", "cname", choice2);
-        getAndFill("${app}/goods/listJSON", $('#updateModal [id="uglist"]'), "gid", "gname", choice3);
 
         return false;//取消超链接的默认跳转
     }
@@ -276,21 +273,25 @@
             //构建行
             var uTr = $("<tr></tr>");
             //构建多个单元格
-            var checkboxTh = $('<th><input type="checkbox" name="choiceList" value="${item.oid}"/></th>');
+            var checkboxTh = $('<th><input type="checkbox" name="choiceList" value="${item.bid}"/></th>');
             var countTh = $('<th></th>').text(index + 1);
-            var td1 = $('<td></td>').text(item.oid);
-            var td2 = $('<td></td>').text(item.oamount);
-            var td3 = $('<td></td>').text(item.opaysstatus);
-            var td4 = $('<td></td>').text(item.goods.gname);
-            var td5 = $('<td></td>').text(item.customer.cname);
-            var td6 = $('<td></td>').text(item.business.bname);
+            var td1 = $('<td></td>').text(item.bid);
+            var td2 = $('<td></td>').text(item.bname);
+            var td3 = $('<td></td>').text(item.bpassword);
+            var td4 = $('<td></td>').text(item.bdescription);
+            var td5 = $('<td></td>').text(item.delivery);
+            var td6 = $('<td></td>').text(item.courier);
+            var td7 = $('<td></td>').text(item.bscore);
+            var td8 = $('<td></td>').text(item.bimg);
+            var td9 = $('<td></td>').text(item.blocation);
+
             var addTimeTd = $('<td></td>').text(new Date(item.addTime).Format("yyyy-MM-dd HH:mm:ss"));
-            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/orderlist/opt/' + item.oid + '">修改</a>');
-            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/orderlist/opt/' + item.oid + '">删除</a>');
+            var upBtnTd = $('<td></td>').html('<a class="upBtn btn btn-info btn-sm" href="${app}/business/opt/' + item.bid + '">修改</a>');
+            var delBtnTd = $('<td></td>').html('<a class="delBtn btn btn-danger btn-sm" href="${app}/business/opt/' + item.bid + '">删除</a>');
             //将单元格追加到行中
             uTr.append(checkboxTh).append(countTh)
                 .append(td1).append(td2).append(td3).append(td4).append(td5)
-                .append(td6)
+                .append(td6).append(td7).append(td8).append(td9)
                 .append(addTimeTd)
                 .append(upBtnTd).append(delBtnTd);
             // 将行追加到表体中

@@ -28,6 +28,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @ResponseBody
+    @RequestMapping(value = "/listJSON")
+    public MessageAndData listJSON(){
+        List<Customer> lists = customerService.selectByExample(null);
+        return MessageAndData.success("").add("lists",lists);
+    }
+
 //  跳转用户管理页面
     @RequestMapping(value = "/customerpage",method = {RequestMethod.GET})
     public String toLogin(){

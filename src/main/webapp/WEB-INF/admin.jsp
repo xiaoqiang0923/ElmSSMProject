@@ -62,7 +62,9 @@
 </nav>
 <hr/>
 
-<iframe src="${app}/adminuser/adminpage" frameborder="0" scrolling="no" name="dataDisplay"  width="100%" height="1000"></iframe>
+<iframe style="margin: 60px 2px 0px 2px" frameborder="0" scrolling="no" name="dataDisplay"  width="99%" height="1000"
+        src="${app}/adminuser/adminpage">
+</iframe>
 
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 <script src="${app}/static/js/jquery-3.3.1.js"></script>
