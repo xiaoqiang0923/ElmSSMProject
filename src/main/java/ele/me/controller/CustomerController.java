@@ -28,6 +28,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @ResponseBody
+    @RequestMapping(value = "/listJSON")
+    public MessageAndData listJSON(){
+        List<Customer> lists = customerService.selectByExample(null);
+        return MessageAndData.success("").add("lists",lists);
+    }
+
 //  跳转用户管理页面
     @RequestMapping(value = "/customerpage",method = {RequestMethod.GET})
     public String toLogin(){
@@ -45,7 +52,6 @@ public class CustomerController {
             @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize
 
     ) throws ParseException {
-        System.out.println(customerCondition);
         CustomerExample customerExample = new CustomerExample();
         CustomerExample.Criteria criteria = customerExample.createCriteria();
 
@@ -122,7 +128,8 @@ public class CustomerController {
     public MessageAndData deletes(@PathVariable("cids")String cids){
         //获取传递过来的uid列表,分解为一个集合对象
         List<Integer> iCids = new ArrayList<Integer>();
-        String[] sCids = cids.split("-");
+        String splitSymbol = "\\D";
+        String[] sCids = cids.split(splitSymbol);
         Integer i = null;
         for (String sUid : sCids) {
             iCids.add(Integer.parseInt(sUid));

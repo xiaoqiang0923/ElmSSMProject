@@ -27,4 +27,7 @@ public interface OrderlistMapper {
     int updateByPrimaryKeySelective(Orderlist record);
 
     int updateByPrimaryKey(Orderlist record);
+
+    List<Orderlist> selectByExampleWithObject(OrderlistExample example);
+    Orderlist selectByPrimaryKeyWithObject(Integer oid);
 }

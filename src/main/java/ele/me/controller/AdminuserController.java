@@ -76,7 +76,6 @@ public class AdminuserController {
             @RequestParam(value = "pageSize",defaultValue = "10")Integer pageSize
 
     ) throws ParseException {
-        System.out.println(adminuserCondition);
         AdminuserExample adminuserExample = new AdminuserExample();
         AdminuserExample.Criteria criteria = adminuserExample.createCriteria();
 

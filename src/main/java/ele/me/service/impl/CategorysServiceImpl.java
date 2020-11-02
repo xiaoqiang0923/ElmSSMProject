@@ -16,27 +16,27 @@ public class CategorysServiceImpl implements CategorysService {
 
     @Override
     public long countByExample(CategorysExample example) {
-        return 0;
+        return categorysMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CategorysExample example) {
-        return 0;
+        return categorysMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer cgid) {
-        return 0;
+        return categorysMapper.deleteByPrimaryKey(cgid);
     }
 
     @Override
     public int insert(Categorys record) {
-        return 0;
+        return categorysMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Categorys record) {
-        return 0;
+        return categorysMapper.insertSelective(record);
     }
 
     @Override
@@ -46,27 +46,29 @@ public class CategorysServiceImpl implements CategorysService {
 
     @Override
     public Categorys selectByPrimaryKey(Integer cgid) {
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         return categorysMapper.selectByPrimaryKey(cgid);
     }
 
     @Override
     public int updateByExampleSelective(Categorys record, CategorysExample example) {
-        return 0;
+        return categorysMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(Categorys record, CategorysExample example) {
-        return 0;
+
+        return categorysMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Categorys record) {
-        return 0;
+
+        return categorysMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Categorys record) {
-        return 0;
+
+        return categorysMapper.updateByPrimaryKey(record);
     }
 }

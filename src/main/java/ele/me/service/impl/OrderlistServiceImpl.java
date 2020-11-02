@@ -70,4 +70,14 @@ public class OrderlistServiceImpl implements OrderlistService {
     public int updateByPrimaryKey(Orderlist record) {
         return orderlistMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Orderlist> selectByExampleWithObject(OrderlistExample example) {
+        return orderlistMapper.selectByExampleWithObject(example);
+    }
+
+    @Override
+    public Orderlist selectByPrimaryKeyWithObject(Integer oid) {
+        return orderlistMapper.selectByPrimaryKeyWithObject(oid);
+    }
 }
