@@ -3,6 +3,7 @@ package ele.me.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import ele.me.domain.Business;
 import ele.me.domain.Categorys;
 import ele.me.domain.CategorysCondition;
 import ele.me.domain.CategorysExample;
@@ -37,6 +38,13 @@ public class CategorysController {
         return "categorys";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "listJSON")
+    public MessageAndData listJSON(){
+        List<Categorys> lists =categorysService.selectByExample(null);
+        return MessageAndData.success("").add("lists",lists);
+
+    }
 
     //  查询所有类别信息
     @ResponseBody

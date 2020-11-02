@@ -255,4 +255,45 @@
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where gid = #{gid,jdbcType=INTEGER}
   </update>
-</mapper>
+
+<!--  我修改的部分-->
+  <select id="selectByExampleWithObject" parameterType="ele.me.domain.GoodsExample" resultMap="BaseResultMapWithObject">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKeyWithObject" parameterType="java.lang.Integer" resultMap="BaseResultMapWithObject">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    where gid = #{gid,jdbcType=INTEGER}
+  </select>
+  <resultMap id="BaseResultMapWithObject" type="ele.me.domain.Goods">
+    <id column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="gimg" jdbcType="VARCHAR" property="gimg" />
+    <result column="gintroduction" jdbcType="VARCHAR" property="gintroduction" />
+    <result column="gprice" jdbcType="DOUBLE" property="gprice" />
+    <result column="gcgid" jdbcType="INTEGER" property="gcgid" />
+    <result column="gbid" jdbcType="INTEGER" property="gbid" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <association property="business" javaType="ele.me.domain.Business" select="ele.me.dao.BusinessMapper.selectByPrimaryKey" column="gbid">
+    <id property="bid" column="bid"></id>
+      <result property="bname" column="bname"></result>
+    </association>
+    <association property="categorys" javaType="ele.me.domain.Categorys" select="ele.me.dao.CategorysMapper.selectByPrimaryKey" column="gcgid">
+      <id property="cgid" column="cgid"></id>
+      <result property="cgname" column="cgname"></result>
+    </association>
+  </resultMap>
+
+  </mapper>

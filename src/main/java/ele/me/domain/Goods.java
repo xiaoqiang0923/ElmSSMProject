@@ -1,11 +1,17 @@
 package ele.me.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
+@Data //启用了lombok插件,相当于@ToString、@EqualsAndHashCode、@Getter、@Setter和@RequiredArgsConstrutor
+@NoArgsConstructor //lombok自动生成空参构造器
+@AllArgsConstructor //lombok自动生成全参构造器
+@JsonIgnoreProperties(value = "handler")    //用于解决mybatis关联查询时使用了懒加载方式过程中数据封装引发的问题
 public class Goods  implements Serializable {
     private Integer gid;
 
@@ -23,19 +29,11 @@ public class Goods  implements Serializable {
 
     private Date addTime;
 
-    public Goods() {
-    }
+    private Business business;
 
-    public Goods(Integer gid, String gname, String gimg, String gintroduction, Double gprice, Integer gcgid, Integer gbid, Date addTime) {
-        this.gid = gid;
-        this.gname = gname;
-        this.gimg = gimg;
-        this.gintroduction = gintroduction;
-        this.gprice = gprice;
-        this.gcgid = gcgid;
-        this.gbid = gbid;
-        this.addTime = addTime;
-    }
+    private Categorys categorys;
+
+
 
     public Integer getGid() {
         return gid;
@@ -99,5 +97,21 @@ public class Goods  implements Serializable {
 
     public void setAddTime(Date addTime) {
         this.addTime = addTime;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public Categorys getCategorys() {
+        return categorys;
+    }
+
+    public void setCategorys(Categorys categorys) {
+        this.categorys = categorys;
     }
 }
