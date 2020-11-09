@@ -53,6 +53,9 @@ public class SpringWithJunitTest {
         OrderlistExample orderlistExample = new OrderlistExample();
         OrderlistExample.Criteria criteria = orderlistExample.createCriteria();
         List<Orderlist> list = orderlistService.selectByExampleWithObject(null);
-        System.out.println(list);
+        for(Orderlist item:list){
+            System.out.println(item);
+        }
+
     }
 }

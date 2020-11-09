@@ -275,7 +275,7 @@
     from orderlist o
     left join goods g on g.gid = o.ogid
     left join customer c on c.cid = o.ocid
-    left join business b on b.bid = g.gbid
+    left join business b on b.bid = o.obid
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>

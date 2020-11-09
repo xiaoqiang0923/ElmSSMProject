@@ -220,9 +220,9 @@
         });
         $('[data-my="inputAvatar"]').change(choiceAvatar);
         //给点击获取相关信息的链接打开模态框
-        $(document).on("click", ".disBtn", displayInfo);
+        // $(document).on("click", ".disBtn",displayInfo);
         //给点击切换状态的连接添加事件
-        $(document).on("click",".changeBtn",changeStatus);
+        // $(document).on("click",".changeBtn",changeStatus);
     });
 
 
@@ -284,7 +284,7 @@
             var countTh = $('<th></th>').text(index + 1);
             var td1 = $('<td></td>').text(item.oid);
             var td2 = $('<td></td>').text(item.oamount);
-            var td3 = $('<td></td>').text(item.opaysstatus);
+            var td3 = $('<td></td>').text(item.paysstatus);
             var td4 = $('<td></td>').text(item.goods.gname);
             var td5 = $('<td></td>').text(item.customer.cname);
             var td6 = $('<td></td>').text(item.business.bname);
