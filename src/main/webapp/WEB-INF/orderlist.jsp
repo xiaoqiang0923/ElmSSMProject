@@ -46,7 +46,7 @@
 
             <!-- 模态框主体 -->
             <div class="modal-body">
-                <form action="${app}/Orderlist/opt" enctype="multipart/form-data" class="form-horizontal"
+                <form action="${app}/orderlist/opt" enctype="multipart/form-data" class="form-horizontal"
                       role="form">
                     <div class="form-group">
                         <label>oamount:</label><input type="text" class="form-control" name="oamount"/>
@@ -219,6 +219,10 @@
             $(eve.target).next('[type="file"]').click();
         });
         $('[data-my="inputAvatar"]').change(choiceAvatar);
+        //给点击获取相关信息的链接打开模态框
+        $(document).on("click", ".disBtn", displayInfo);
+        //给点击切换状态的连接添加事件
+        $(document).on("click",".changeBtn",changeStatus);
     });
 
 

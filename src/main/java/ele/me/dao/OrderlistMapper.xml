@@ -277,14 +277,14 @@
     left join customer c on c.cid = o.ocid
     left join business b on b.bid = g.gbid
     <if test="_parameter != null">
-      <include refid="Extend_Column_List" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
 
-  <select id="selectWithObjectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultWithObjectMap">
+  <select id="selectByPrimaryKeyWithObject" parameterType="java.lang.Integer" resultMap="BaseResultWithObjectMap">
     select
     <include refid="Extend_Column_List" />
     from orderlist o
